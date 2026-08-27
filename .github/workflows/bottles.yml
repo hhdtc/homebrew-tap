@@ -76,13 +76,13 @@ jobs:
     name: bottle ${{ matrix.tag }}
     steps:
       - uses: actions/checkout@v4
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c
       - name: Build bottle from source
         run: |
           TR="$(brew --repository)/Library/Taps/hhdtc/homebrew-tap"
           mkdir -p "$(brew --repository)/Library/Taps/hhdtc"
           ln -sfn "$PWD" "$TR"
-          brew install --formula --build-from-source hhdtc/tap/lnreadertui 2>&1 | tail -6
+          brew install --formula --build-from-source --build-bottle hhdtc/tap/lnreadertui 2>&1 | tail -6
           brew bottle lnreadertui 2>&1 | tail -3
           ls *.bottle.tar.gz
       - uses: actions/upload-artifact@v4
