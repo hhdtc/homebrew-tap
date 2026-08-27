@@ -8,6 +8,9 @@ name: Bottles
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/bottles.yml"
     inputs:
       force:
         description: "rebuild bottles even if the formula is current"
