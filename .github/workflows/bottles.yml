@@ -135,6 +135,7 @@ jobs:
           for tag, sha in entries:
               lines.append(f'    sha256 cellar: :any_skip_relocation, {tag}: "{sha}"')
           lines.append('  end')
+          s = re.sub(r'\n  bottle do.*?end', '', s, flags=re.S)
           s = s.replace('  license "MIT"', '  license "MIT"\n' + "\n".join(lines))
           open(p, 'w').write(s)
           print("bottle entries:", entries)
