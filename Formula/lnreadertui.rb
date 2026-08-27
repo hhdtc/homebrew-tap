@@ -4,6 +4,9 @@ class Lnreadertui < Formula
   url "https://github.com/hhdtc/LNReaderTUI/archive/refs/tags/v1.1.2.tar.gz"
   sha256 "fa2001dd7058ad8b050d5c0b01f5cb313a5b4ada0d9b1d3fbf565276f8cffbf5"
   license "MIT"
+  bottle do
+    root_url "https://github.com/hhdtc/homebrew-tap/releases/download/v1.1.2"
+  end
 
   depends_on "go" => :build
 
