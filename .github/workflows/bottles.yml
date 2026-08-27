@@ -89,9 +89,9 @@ jobs:
           CELLAR="$(brew --cellar)/lnreadertui/$VER"
           rm -rf stage && mkdir -p "stage/lnreadertui"
           cp -R "$CELLAR" "stage/lnreadertui/$VER"
-          tar czf "bottle-${{ matrix.tag }}.tar.gz" -C stage lnreadertui
+          tar czf "lnreadertui-${{ needs.update-formula.outputs.version }}.${{ matrix.tag }}.bottle.tar.gz" -C stage lnreadertui
           ls -la *.tar.gz
-          tar tzf "bottle-${{ matrix.tag }}.tar.gz" | head -4
+          tar tzf "lnreadertui-${{ needs.update-formula.outputs.version }}.${{ matrix.tag }}.bottle.tar.gz" | head -4
       - uses: actions/upload-artifact@v4
         with:
           name: bottle-${{ matrix.tag }}
@@ -122,7 +122,7 @@ jobs:
           for f in sorted(os.listdir('bottles')):
               if not f.endswith('.tar.gz'):
                   continue
-              m = re.match(r'bottle-(.+)\.tar\.gz', f)
+              m = re.match(rf'lnreadertui-+{re.escape(ver)}\.(.+?)\.bottle\.tar\.gz', f)
               if not m:
                   continue
               with open(os.path.join('bottles', f), 'rb') as fh:
