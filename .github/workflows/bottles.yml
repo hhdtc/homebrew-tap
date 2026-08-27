@@ -84,7 +84,11 @@ jobs:
           ln -sfn "$PWD" "$TR"
           brew install --formula --build-bottle hhdtc/tap/lnreadertui 2>&1 | tail -6
           brew bottle lnreadertui 2>&1 | tail -3
-          ls *.bottle.tar.gz
+          # Locate the tarball wherever brew placed it (workspace, cellar or
+          # cache) and copy it to the workspace for upload.
+          B="$(find "$GITHUB_WORKSPACE" /opt/homebrew/var/homebrew /usr/local/var/homebrew "$HOME/Library/Caches/Homebrew" -name '*.bottle.tar.gz' 2>/dev/null | head -1)"
+          if [ -n "$B" ]; then cp "$B" .; fi
+          ls -la *.bottle.tar.gz
       - uses: actions/upload-artifact@v4
         with:
           name: bottle-${{ matrix.tag }}
