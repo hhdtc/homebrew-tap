@@ -67,8 +67,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { os: macos-13, tag: ventura }
-          - { os: macos-13, tag: arm64_ventura }
           - { os: macos-14, tag: sonoma }
           - { os: macos-14, tag: arm64_sonoma }
           - { os: macos-15, tag: sequoia }
@@ -81,7 +79,10 @@ jobs:
       - uses: Homebrew/actions/setup-homebrew@master
       - name: Build bottle from source
         run: |
-          brew install --formula --build-from-source ./Formula/lnreadertui.rb 2>&1 | tail -6
+          TR="$(brew --repository)/Library/Taps/hhdtc/homebrew-tap"
+          mkdir -p "$(brew --repository)/Library/Taps/hhdtc"
+          ln -sfn "$PWD" "$TR"
+          brew install --formula --build-from-source hhdtc/tap/lnreadertui 2>&1 | tail -6
           brew bottle lnreadertui 2>&1 | tail -3
           ls *.bottle.tar.gz
       - uses: actions/upload-artifact@v4
@@ -112,17 +113,16 @@ jobs:
           ver = sys.argv[1]
           bottles_dir = 'bottles'
           entries = []
+          import re
           for f in sorted(os.listdir(bottles_dir)):
               if not f.endswith('.bottle.tar.gz'):
                   continue
-              tag = f.split('.bottle.tar.gz')[0].split(f'lnreadertui-{ver}')[-1]
-              if tag.startswith('.'):
-                  tag = tag[1:]
-              # stable: tag = e.g. arm64_ventura or sonoma
-              tag = tag.split('-')[0]
+              m = re.match(rf'lnreadertui-+{re.escape(ver)}\.(.+?)\.bottle\.tar\.gz', f)
+              if not m:
+                  continue
               with open(os.path.join(bottles_dir, f), 'rb') as fh:
                   sha = hashlib.sha256(fh.read()).hexdigest()
-              entries.append((tag, sha))
+              entries.append((m.group(1), sha))
           p = 'Formula/lnreadertui.rb'
           s = open(p).read()
           root = f'https://github.com/hhdtc/homebrew-tap/releases/download/v{ver}'
