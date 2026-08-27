@@ -6,11 +6,11 @@ class Lnreadertui < Formula
   license "MIT"
   bottle do
     root_url "https://github.com/hhdtc/homebrew-tap/releases/download/v1.1.2"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "fbb005ffa8eb491764cabc1fc8071e5a9b9758d7328519f50180e196137a9df1"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma: "165b522bf3f85437af49aab1fcd82a047a7c84f8bc35b700e4390d796d2f265a"
-    sha256 cellar: :any_skip_relocation, sequoia: "ff01ba815c16a7fbccecf2501fd7bee1b54d71cef6c795addbe89803c27b0164"
-    sha256 cellar: :any_skip_relocation, sonoma: "1dc38c2727ed415dbc150e3c21f682a54ff6bc886115b2919506086296367f81"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "c4c65db8811b9fd6cd06b8fca6fda5490b2f515812ce08e9e76f7e542a09754c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "527436ac70ee6ea05aae3a5a18fbc24a56aeb0b903c1df087623087aa69b3e97"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "d72ce72ba3f9a788724a962019b34594c4f272d7858eb1dde991d2beb90bb783"
+    sha256 cellar: :any_skip_relocation, sequoia: "828143517b8765727dcd869bcc5e431bf08fd1340a3fa5434561058af8ac53d6"
+    sha256 cellar: :any_skip_relocation, sonoma: "34f989ffbb63099ba2fef21d481abd4c4d1808ee13af2dcf537d3a5e1969f85a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "9cbec26227b66ef9ca5708ea52044416e413bbdb056d5d311136b43abd204f09"
   end
 
   depends_on "go" => :build
