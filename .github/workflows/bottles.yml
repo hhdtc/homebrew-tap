@@ -39,8 +39,9 @@ jobs:
           CUR=$(grep -oP 'url ".*tags/v\K[^"]+' Formula/lnreadertui.rb || true)
           echo "upstream=$VER current=$CUR"
           echo "version=$VER" >> "$GITHUB_OUTPUT"
-          if [ "$VER" = "$CUR" ] && [ "$FORCE" != "true" ]; then
-            echo "unchanged; nothing to do"
+          NEEDS_BOTTLES=$(grep -c 'bottle do' Formula/lnreadertui.rb || true)
+          if [ "$VER" = "$CUR" ] && [ "$NEEDS_BOTTLES" != "0" ] && [ "$FORCE" != "true" ]; then
+            echo "unchanged and bottles present; nothing to do"
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
