@@ -1,10 +1,10 @@
 name: Bottles
 
-# Runs on schedule (hourly), manual trigger, or repository_dispatch from the
-# upstream LNReaderTUI repo. When a newer upstream release exists: updates the
-# formula (url + sha256), builds bottles for macOS (arm64/x86_64, Ventura +
-# Sonoma + Sequoia) and Linux x86_64, publishes them as a tap release, and
-# annotates the formula so `brew install` uses binaries (no local Go needed).
+# Manual trigger only. When a newer upstream release exists (or bottles are
+# missing): updates the formula (url + sha256), builds bottles for macOS
+# (arm64/x86_64, Ventura + Sonoma + Sequoia) and Linux x86_64, publishes them
+# as a tap release, and annotates the formula so `brew install` uses
+# binaries (no local Go needed).
 
 on:
   workflow_dispatch:
@@ -13,9 +13,6 @@ on:
         description: "rebuild bottles even if the formula is current"
         required: false
         default: "false"
-  schedule:
-    - cron: "0 * * * *"
-
 permissions:
   contents: write
 
