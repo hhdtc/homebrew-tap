@@ -1,6 +1,7 @@
 name: Bottles
 
-# Manual trigger only. When a newer upstream release exists (or bottles are
+# Manual trigger only.
+# (~fire) When a newer upstream release exists (or bottles are
 # missing): updates the formula (url + sha256), builds bottles for macOS
 # (arm64/x86_64, Ventura + Sonoma + Sequoia) and Linux x86_64, publishes them
 # as a tap release, and annotates the formula so `brew install` uses
