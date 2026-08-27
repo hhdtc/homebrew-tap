@@ -83,15 +83,15 @@ jobs:
           mkdir -p "$(brew --repository)/Library/Taps/hhdtc"
           ln -sfn "$PWD" "$TR"
           brew install --formula --build-bottle hhdtc/tap/lnreadertui 2>&1 | tail -6
-          # --root-url makes brew write the bottle into the current directory.
-          brew bottle --root-url "https://github.com/hhdtc/homebrew-tap/releases/download/v${{ needs.update-formula.outputs.version }}" lnreadertui 2>&1 | tail -3
-          B="$(find / -path /proc -prune -o -path /sys -prune -o -path /dev -prune -o -name 'lnreadertui*.bottle.tar.gz' ! -name 'testball*' -print 2>/dev/null | head -1)"
-          if [ -z "$B" ]; then
-            echo "FAILED to locate bottle tarball"
-            exit 1
-          fi
-          mv "$B" "./bottle-${{ matrix.tag }}.tar.gz"
+          # Pack the installed Cellar into the standard bottle layout
+          # (`lnreadertui/<version>/...`) — deterministic on every platform.
+          VER="${{ needs.update-formula.outputs.version }}"
+          CELLAR="$(brew --cellar)/lnreadertui/$VER"
+          rm -rf stage && mkdir -p "stage/lnreadertui"
+          cp -R "$CELLAR" "stage/lnreadertui/$VER"
+          tar czf "bottle-${{ matrix.tag }}.tar.gz" -C stage lnreadertui
           ls -la *.tar.gz
+          tar tzf "bottle-${{ matrix.tag }}.tar.gz" | head -4
       - uses: actions/upload-artifact@v4
         with:
           name: bottle-${{ matrix.tag }}
