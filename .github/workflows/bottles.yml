@@ -83,10 +83,9 @@ jobs:
           mkdir -p "$(brew --repository)/Library/Taps/hhdtc"
           ln -sfn "$PWD" "$TR"
           brew install --formula --build-bottle hhdtc/tap/lnreadertui 2>&1 | tail -6
-          brew bottle lnreadertui 2>&1 | tail -3
-          # Locate the tarball (workspace or brew prefix), re-name it
-          # deterministically and drop brew's testball noise.
-          B="$(find "$GITHUB_WORKSPACE" "$(brew --prefix)" -name 'lnreadertui*.bottle.tar.gz' ! -name 'testball*' 2>/dev/null | head -1)"
+          # --root-url makes brew write the bottle into the current directory.
+          brew bottle --root-url "https://github.com/hhdtc/homebrew-tap/releases/download/v${{ needs.update-formula.outputs.version }}" lnreadertui 2>&1 | tail -3
+          B="$(find . "$(brew --prefix)" -name 'lnreadertui*.bottle.tar.gz' ! -name 'testball*' 2>/dev/null | head -1)"
           mv "$B" "./bottle-${{ matrix.tag }}.tar.gz"
           ls -la *.tar.gz
       - uses: actions/upload-artifact@v4
