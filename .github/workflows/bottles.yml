@@ -95,7 +95,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: bottle-${{ matrix.tag }}
-          path: "*.bottle.tar.gz"
+          path: "*.tar.gz"
 
   assemble:
     needs: [update-formula, bottle-build]
