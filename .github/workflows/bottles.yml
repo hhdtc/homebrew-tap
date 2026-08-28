@@ -2,6 +2,7 @@ name: Bottles
 
 # Manual trigger only.
 # (~fire2)
+# sync v1.1.4
 # (~fire) When a newer upstream release exists (or bottles are
 # missing): updates the formula (url + sha256), builds bottles for macOS
 # (arm64/x86_64, Ventura + Sonoma + Sequoia) and Linux x86_64, publishes them
