@@ -84,6 +84,8 @@ jobs:
     name: bottle ${{ matrix.tag }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # pick up the sync step's formula bump, pushed mid-run
       - uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c
       - name: Build bottle from source
         run: |
