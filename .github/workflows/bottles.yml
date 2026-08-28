@@ -60,6 +60,12 @@ jobs:
           s = re.sub(r'\n  bottle do.*?end', '', s, flags=re.S)
           open(p, 'w').write(s)
           PY
+          # Commit + push the bump so the bottle jobs check out the new
+          # formula (they run on their own fresh checkout).
+          git add Formula/lnreadertui.rb
+          git -c user.name="lnreadertui-bot" -c user.email="bot@users.noreply.github.com" \
+            commit -m "lnreadertui: bump to v$VER" || true
+          git push origin main || echo "push failed (will retry in assemble)"
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
   bottle-build:
