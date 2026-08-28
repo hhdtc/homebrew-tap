@@ -90,10 +90,9 @@ jobs:
       - uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c
       - name: Build bottle from source
         run: |
-          TR="$(brew --repository)/Library/Taps/hhdtc/homebrew-tap"
-          mkdir -p "$(brew --repository)/Library/Taps/hhdtc"
-          ln -sfn "$PWD" "$TR"
-          brew install --formula --build-bottle hhdtc/tap/lnreadertui 2>&1 | tail -6
+          # Install from the checked-out formula path: tap-name resolution
+          # can pick a stale clone and build the previous version.
+          brew install --formula --build-bottle "$PWD/Formula/lnreadertui.rb" 2>&1 | tail -6
           # Pack the installed Cellar into the standard bottle layout
           # (`lnreadertui/<version>/...`) — deterministic on every platform.
           VER="${{ needs.update-formula.outputs.version }}"
