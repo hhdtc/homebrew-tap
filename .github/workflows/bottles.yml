@@ -90,6 +90,9 @@ jobs:
           ref: main   # pick up the sync step's formula bump, pushed mid-run
       - uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c
       - name: Build bottle from source
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: "1"   # never let brew re-clone the tap over
+          # the checkout symlink (that clone can resolve the old formula)
         run: |
           # Fresh tap symlink: an existing tap dir makes `ln -sfn` silently
           # nest, leaving the stale clone to resolve the old version.
