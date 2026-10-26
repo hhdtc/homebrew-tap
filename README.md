@@ -1,14 +1,30 @@
-# homebrew-tap
+# hhdtc Homebrew tap
 
-Homebrew tap for [LNReaderTUI](https://github.com/hhdtc/LNReaderTUI).
+Homebrew formulas for [hhdtc](https://github.com/hhdtc) tools.
+
+## Endfield Tray
 
 ```bash
 brew tap hhdtc/tap
-brew install lnreadertui
+brew install endfield-tray
+endfield-tray --autostart enable
+```
+
+Check / disable login autostart:
+
+```bash
+endfield-tray --autostart status
+endfield-tray --autostart disable
 ```
 
 Upgrade:
 
 ```bash
-brew upgrade lnreadertui
+brew upgrade endfield-tray
+```
+
+## LNReaderTUI
+
+```bash
+brew install lnreadertui
 ```

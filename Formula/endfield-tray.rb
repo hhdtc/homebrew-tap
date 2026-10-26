@@ -19,8 +19,7 @@ class EndfieldTray < Formula
       Endfield Tray uses the system Qt 6, KDE Plasma, NetworkManager,
       PipeWire and BlueZ. On Arch/CachyOS install:
 
-        sudo pacman -S qt6-base qt6-declarative qt6-wayland layer-shell-qt \
-          plasma-workspace networkmanager pipewire wireplumber bluez-utils
+        sudo pacman -S qt6-base qt6-declarative qt6-wayland layer-shell-qt plasma-workspace networkmanager pipewire wireplumber bluez-utils
 
       Enable start at KDE login with:
 
