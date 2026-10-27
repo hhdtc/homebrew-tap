@@ -1,10 +1,10 @@
 class EndfieldTray < Formula
   desc "Compact Endfield-inspired floating taskbar for KDE Plasma 6 Wayland"
   homepage "https://github.com/hhdtc/EndfieldTray"
-  url "https://github.com/hhdtc/EndfieldTray/releases/download/v0.1.14/endfield-tray-v0.1.14-x86_64-linux.tar.gz"
-  sha256 "8f05df8e9f2d3be932f15a7d33746ec5b0b1b7e39e46b327b6ec7b1e17e3bfa5"
+  url "https://github.com/hhdtc/EndfieldTray/releases/download/v0.1.15/endfield-tray-v0.1.15-x86_64-linux.tar.gz"
+  sha256 "2071a572fe45921e0464bbe63d6325f97fb3080b9cae637f4d79c4588fdb30d1"
   license "MIT"
-  version "0.1.14"
+  version "0.1.15"
 
   def install
     bin.install "endfield-tray"
