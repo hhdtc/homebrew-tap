@@ -1,10 +1,10 @@
 class EndfieldTray < Formula
   desc "Compact Endfield-inspired floating taskbar for KDE Plasma 6 Wayland"
   homepage "https://github.com/hhdtc/EndfieldTray"
-  url "https://github.com/hhdtc/EndfieldTray/releases/download/v0.1.21/endfield-tray-v0.1.21-x86_64-linux.tar.gz"
-  sha256 "0914b9de5071d54dfabef26df9ed5cbc772d3e200d87c68d393e9df9e0b712ec"
+  url "https://github.com/hhdtc/EndfieldTray/releases/download/v0.1.22/endfield-tray-v0.1.22-x86_64-linux.tar.gz"
+  sha256 "eb3121e0891ad0b128441d64071561fc12425a61f3adf6a2f9b62c151cfe6d48"
   license "MIT"
-  version "0.1.21"
+  version "0.1.22"
 
   def install
     bin.install "endfield-tray"
@@ -19,7 +19,7 @@ class EndfieldTray < Formula
       Endfield Tray uses the system Qt 6, KDE Plasma, NetworkManager,
       PipeWire and BlueZ. On Arch/CachyOS install:
 
-        sudo pacman -S qt6-base qt6-declarative qt6-wayland layer-shell-qt plasma-workspace networkmanager pipewire wireplumber bluez-utils
+        sudo pacman -S qt6-base qt6-declarative qt6-wayland layer-shell-qt plasma-workspace kglobalaccel networkmanager pipewire wireplumber bluez-utils
 
       Enable start at KDE login with:
 
