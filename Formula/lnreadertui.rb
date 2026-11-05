@@ -1,8 +1,8 @@
 class Lnreadertui < Formula
   desc "Terminal reader for bilinovel.net light novels: search, download as EPUB, read with auto progress"
   homepage "https://github.com/hhdtc/LNReaderTUI"
-  url "https://github.com/hhdtc/LNReaderTUI/archive/refs/tags/v1.1.7.tar.gz"
-  sha256 "5a66ac9e591e3f60714b94a35205dce6c06f9f795f769d08ebc00be4166f9d14"
+  url "https://github.com/hhdtc/LNReaderTUI/archive/refs/tags/v1.1.8.tar.gz"
+  sha256 "b14052138841356e91152906230546481375663f09ec2f4322d350a9beaf8aef"
   license "MIT"
   depends_on "go" => :build
 
