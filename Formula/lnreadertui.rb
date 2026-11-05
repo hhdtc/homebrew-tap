@@ -9,6 +9,9 @@ class Lnreadertui < Formula
   def install
     # Static binary: brew bottles must run on any Linux/macOS.
     ENV["CGO_ENABLED"] = "0"
-    system "go", "build", "-trimpath", "-ldflags", "-s -w", "-o", bin/"lnreadertui", "."
+    # Stamp the formula's version so `lnreadertui --version` reports the
+    # installed release instead of "dev".
+    system "go", "build", "-trimpath", "-ldflags", "-s -w -X main.version=#{version}",
+           "-o", bin/"lnreadertui", "."
   end
 end
